@@ -1,0 +1,33 @@
+title: 雞舍重建專案 - 使用者需求訪談學習單
+description: 互動式網頁版學習單，專為雞本創客課程設計
+theme: minima
+lang: zh-TW
+
+# GitHub Pages 設定
+baseurl: ""
+url: ""
+
+# 網站資訊
+author:
+  name: 雞本創客教學團隊
+  
+# 啟用插件
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+# 排除檔案
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+
+# 預設設定
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"

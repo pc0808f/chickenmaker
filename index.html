@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>雞舍重建專案：使用者需求訪談學習單</title>
+    <style>
+        body {
+            font-family: 'Microsoft JhengHei', Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #4CAF50;
+            padding-bottom: 20px;
+        }
+        .header h1 {
+            color: #2E7D32;
+            margin: 0;
+            font-size: 24px;
+        }
+        .info-bar {
+            background: #E8F5E8;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .info-bar input {
+            border: none;
+            background: transparent;
+            border-bottom: 2px dotted #4CAF50;
+            padding: 5px;
+            margin: 0 10px;
+            font-size: 16px;
+        }
+        .section {
+            margin: 30px 0;
+            border-left: 4px solid #4CAF50;
+            padding-left: 20px;
+        }
+        .section h2 {
+            color: #2E7D32;
+            margin-top: 0;
+            font-size: 18px;
+        }
+        .mission {
+            background: #FFF3E0;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #FF9800;
+            margin: 20px 0;
+            font-weight: bold;
+            color: #E65100;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 2px solid #4CAF50;
+            padding: 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+        }
+        td {
+            background-color: #F9F9F9;
+        }
+        .observation-cell {
+            width: 30%;
+            font-weight: bold;
+        }
+        .finding-cell {
+            width: 70%;
+            background: white;
+            min-height: 80px;
+        }
+        .checkbox-group {
+            margin: 5px 0;
+        }
+        .checkbox-group label {
+            margin-right: 15px;
+            font-size: 14px;
+        }
+        .text-input {
+            width: 100%;
+            min-height: 60px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 8px;
+            font-size: 14px;
+            resize: vertical;
+        }
+        .drawing-area {
+            border: 2px dashed #4CAF50;
+            min-height: 200px;
+            margin: 15px 0;
+            padding: 20px;
+            text-align: center;
+            background: #FAFAFA;
+            color: #666;
+        }
+        .material-table {
+            background: #F0F8F0;
+        }
+        .reflection-section {
+            background: #E3F2FD;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .print-btn {
+            background: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 20px 10px;
+        }
+        .print-btn:hover {
+            background: #45a049;
+        }
+        .clear-btn {
+            background: #f44336;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 20px 10px;
+        }
+        .clear-btn:hover {
+            background: #da190b;
+        }
+        .controls {
+            text-align: center;
+            margin: 30px 0;
+        }
+        @media print {
+            body { background: white; }
+            .container { box-shadow: none; }
+            .controls { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🐔 雞舍重建專案：使用者需求訪談學習單</h1>
+        </div>
+        
+        <div class="info-bar">
+            <strong>團隊名稱：</strong>雞舍設計/監工隊　
+            <strong>調查員姓名：</strong><input type="text" placeholder="請輸入姓名">　
+            <strong>日期：</strong><input type="text" placeholder="____年__月__日">
+        </div>
+        
+        <div class="mission">
+            🎯 <strong>我們的任務：</strong> 成為雞的代言人！設計一個更安全、更舒服、更棒的家！
+        </div>
+
+        <!-- 第一部分 -->
+        <div class="section">
+            <h2>🐔 第一部分：我們的「使用者(雞)」是誰？</h2>
+            <p>請仔細觀察雞，並把你的發現畫下來或寫下來。</p>
+            <table>
+                <tr>
+                    <th>觀察項目</th>
+                    <th>你的發現（畫圖或文字）</th>
+                </tr>
+                <tr>
+                    <td class="observation-cell">
+                        <strong>牠們喜歡待在哪裡？</strong><br>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox"> 陰涼處</label>
+                            <label><input type="checkbox"> 高處</label><br>
+                            <label><input type="checkbox"> 草地</label>
+                            <label><input type="checkbox"> 其他：<input type="text" style="width:80px;"></label>
+                        </div>
+                    </td>
+                    <td class="finding-cell">
+                        <textarea class="text-input" placeholder="在這裡記錄你的發現..."></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="observation-cell">
+                        <strong>牠們會做什麼事？</strong><br>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox"> 散步</label>
+                            <label><input type="checkbox"> 吃東西</label><br>
+                            <label><input type="checkbox"> 抓癢</label>
+                            <label><input type="checkbox"> 休息</label><br>
+                            <label><input type="checkbox"> 其他：<input type="text" style="width:80px;"></label>
+                        </div>
+                    </td>
+                    <td class="finding-cell">
+                        <textarea class="text-input" placeholder="在這裡記錄你的發現..."></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="observation-cell">
+                        <strong>身高、體長多少？</strong><br>
+                        <small>（用手或尺比比看）</small>
+                    </td>
+                    <td class="finding-cell">
+                        <textarea class="text-input" placeholder="在這裡記錄測量結果..."></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="observation-cell">
+                        <strong>吃飯/喝水的樣子？</strong><br>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox"> 會搶食</label>
+                            <label><input type="checkbox"> 不會搶</label><br>
+                            <label><input type="checkbox"> 頭伸很低</label>
+                        </div>
+                    </td>
+                    <td class="finding-cell">
+                        <textarea class="text-input" placeholder="在這裡記錄你的發現..."></textarea>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- 第二部分 -->
+        <div class="section">
+            <h2>🔍 第二部分：舊雞舍為什麼會壞掉？</h2>
+            <p>請像偵探一樣，找出舊雞舍的弱點！</p>
+            <table>
+                <tr>
+                    <th>觀察項目</th>
+                    <th>你的發現（畫圖或文字）</th>
+                </tr>
+                <tr>
+                    <td class="observation-cell">
+                        <strong>哪一個地方壞得最嚴重？</strong><br>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox"> 屋頂</label>
+                            <label><input type="checkbox"> 牆壁</label><br>
+                            <label><input type="checkbox"> 柱子</label>
+                            <label><input type="checkbox"> 其他：<input type="text" style="width:60px;"></label>
+                        </div>
+                    </td>
+                    <td class="finding-cell">
+                        <textarea class="text-input" placeholder="在這裡記錄你的發現..."></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="observation-cell">
+                        <strong>為什麼會壞掉？</strong><br>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox"> 被風吹</label>
+                            <label><input type="checkbox"> 被雨淋</label><br>
+                            <label><input type="checkbox"> 木頭太細</label>
+                            <label><input type="checkbox"> 其他：<input type="text" style="width:60px;"></label>
+                        </div>
+                    </td>
+                    <td class="finding-cell">
+                        <textarea class="text-input" placeholder="在這裡記錄你的分析..."></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="observation-cell">
+                        <strong>有什麼不好用的地方？</strong><br>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox"> 很難撿蛋</label>
+                            <label><input type="checkbox"> 很難清理</label><br>
+                            <label><input type="checkbox"> 其他：<input type="text" style="width:80px;"></label>
+                        </div>
+                    </td>
+                    <td class="finding-cell">
+                        <textarea class="text-input" placeholder="在這裡記錄你的發現..."></textarea>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- 第三部分 -->
+        <div class="section">
+            <h2>💡 第三部分：新雞舍的超級點子！</h2>
+            <p>根據上面的觀察，我們來設計一個更厲害的新家！</p>
+            <table>
+                <tr>
+                    <th>設計項目</th>
+                    <th>我們的「雞」妙點子</th>
+                </tr>
+                <tr>
+                    <td class="observation-cell"><strong>新雞舍的「門」要開在哪？多大？</strong></td>
+                    <td class="finding-cell">
+                        <textarea class="text-input" placeholder="在這裡寫下或畫出你的設計想法..."></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="observation-cell"><strong>吃飯和喝水的地方要怎麼設計？</strong></td>
+                    <td class="finding-cell">
+                        <textarea class="text-input" placeholder="在這裡寫下或畫出你的設計想法..."></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="observation-cell"><strong>睡覺的「棲木」要裝在哪裡？多高？</strong></td>
+                    <td class="finding-cell">
+                        <textarea class="text-input" placeholder="在這裡寫下或畫出你的設計想法..."></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="observation-cell"><strong>下蛋的地方需要什麼特別設計嗎？</strong><br><small>（是不是要暗一點、舒服一點？）</small></td>
+                    <td class="finding-cell">
+                        <textarea class="text-input" placeholder="在這裡寫下或畫出你的設計想法..."></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="observation-cell"><strong>🧠【腦力激盪】</strong><br>我們能不能加一個超酷的功能？<br><small>（例如：自動滑水道讓雞蛋滾出來？）</small></td>
+                    <td class="finding-cell">
+                        <textarea class="text-input" placeholder="發揮你的創意想像！"></textarea>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- 第四部分 -->
+        <div class="section">
+            <h2>🎨 第四部分：設計草圖區</h2>
+            <p><strong>請在下面的空白區域畫出你們的新雞舍設計：</strong></p>
+            <div class="drawing-area" id="drawingArea">
+                <p>📝 請在這裡畫出你的設計</p>
+                <p><small>（可以用滑鼠在電腦上畫，或列印後用筆畫）</small></p>
+            </div>
+        </div>
+
+        <!-- 第五部分 -->
+        <div class="section">
+            <h2>📋 第五部分：材料清單</h2>
+            <p><strong>根據你們的設計，列出需要的材料：</strong></p>
+            <table class="material-table">
+                <tr>
+                    <th>材料名稱</th>
+                    <th>需要數量</th>
+                    <th>從哪裡取得</th>
+                    <th>備註</th>
+                </tr>
+                <tr>
+                    <td>木板</td>
+                    <td><input type="text" placeholder="___片"></td>
+                    <td>
+                        <label><input type="checkbox"> 舊雞舍</label>
+                        <label><input type="checkbox"> 新購買</label>
+                    </td>
+                    <td><input type="text" placeholder="備註"></td>
+                </tr>
+                <tr>
+                    <td>釘子</td>
+                    <td><input type="text" placeholder="___支"></td>
+                    <td>
+                        <label><input type="checkbox"> 舊雞舍</label>
+                        <label><input type="checkbox"> 新購買</label>
+                    </td>
+                    <td><input type="text" placeholder="備註"></td>
+                </tr>
+                <tr>
+                    <td>屋頂材料</td>
+                    <td><input type="text" placeholder="____"></td>
+                    <td>
+                        <label><input type="checkbox"> 舊雞舍</label>
+                        <label><input type="checkbox"> 新購買</label>
+                    </td>
+                    <td><input type="text" placeholder="備註"></td>
+                </tr>
+                <tr>
+                    <td><input type="text" placeholder="其他材料"></td>
+                    <td><input type="text" placeholder="____"></td>
+                    <td>
+                        <label><input type="checkbox"> 舊雞舍</label>
+                        <label><input type="checkbox"> 新購買</label>
+                    </td>
+                    <td><input type="text" placeholder="備註"></td>
+                </tr>
+                <tr>
+                    <td><input type="text" placeholder="其他材料"></td>
+                    <td><input type="text" placeholder="____"></td>
+                    <td>
+                        <label><input type="checkbox"> 舊雞舍</label>
+                        <label><input type="checkbox"> 新購買</label>
+                    </td>
+                    <td><input type="text" placeholder="備註"></td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- 第六部分 -->
+        <div class="section">
+            <div class="reflection-section">
+                <h2>🤔 第六部分：團隊反思</h2>
+                <p><strong>這次觀察讓我們學到了什麼？</strong></p>
+                
+                <p><strong>1. 關於雞的習性，我發現：</strong></p>
+                <textarea class="text-input" placeholder="請寫下你對雞的行為觀察心得..."></textarea>
+                
+                <p><strong>2. 關於建築設計，我學到：</strong></p>
+                <textarea class="text-input" placeholder="請寫下你對建築設計的學習心得..."></textarea>
+                
+                <p><strong>3. 關於團隊合作，我覺得：</strong></p>
+                <textarea class="text-input" placeholder="請寫下你對團隊合作的感想..."></textarea>
+                
+                <p><strong>給建築隊的建議或想法：</strong></p>
+                <textarea class="text-input" placeholder="請寫下你想對建築隊說的話..."></textarea>
+            </div>
+        </div>
+
+        <!-- 控制按鈕 -->
+        <div class="controls">
+            <button class="print-btn" onclick="window.print()">🖨️ 列印學習單</button>
+            <button class="clear-btn" onclick="clearAll()">🗑️ 清除所有內容</button>
+            <button class="print-btn" onclick="saveData()">💾 儲存填寫內容</button>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px; color: #666; font-size: 12px;">
+            <p>📌 <strong>給老師的提示：</strong></p>
+            <p>建議2人一組完成 • 鼓勵圖文並用 • 重要學習歷程記錄 • 可用於成果發表</p>
+        </div>
+    </div>
+
+    <script>
+        function clearAll() {
+            if (confirm('確定要清除所有填寫的內容嗎？')) {
+                // 清除所有input和textarea
+                document.querySelectorAll('input[type="text"], textarea').forEach(element => {
+                    element.value = '';
+                });
+                // 清除所有checkbox
+                document.querySelectorAll('input[type="checkbox"]').forEach(element => {
+                    element.checked = false;
+                });
+                alert('所有內容已清除！');
+            }
+        }
+
+        function saveData() {
+            // 收集所有表單數據
+            const data = {};
+            
+            // 收集文字輸入
+            document.querySelectorAll('input[type="text"], textarea').forEach((element, index) => {
+                data[`text_${index}`] = element.value;
+            });
+            
+            // 收集勾選框
+            document.querySelectorAll('input[type="checkbox"]').forEach((element, index) => {
+                data[`check_${index}`] = element.checked;
+            });
+            
+            // 轉換為JSON並下載
+            const jsonData = JSON.stringify(data, null, 2);
+            const blob = new Blob([jsonData], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `雞舍設計學習單_${new Date().toISOString().slice(0,10)}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            alert('學習單內容已儲存！');
+        }
+
+        // 自動儲存功能
+        setInterval(() => {
+            const data = {};
+            document.querySelectorAll('input[type="text"], textarea').forEach((element, index) => {
+                if (element.value.trim()) {
+                    data[`text_${index}`] = element.value;
+                }
+            });
+            document.querySelectorAll('input[type="checkbox"]').forEach((element, index) => {
+                if (element.checked) {
+                    data[`check_${index}`] = element.checked;
+                }
+            });
+            if (Object.keys(data).length > 0) {
+                localStorage.setItem('chicken_coop_worksheet', JSON.stringify(data));
+            }
+        }, 30000); // 每30秒自動儲存
+
+        // 頁面載入時恢復數據
+        window.addEventListener('load', () => {
+            const savedData = localStorage.getItem('chicken_coop_worksheet');
+            if (savedData) {
+                try {
+                    const data = JSON.parse(savedData);
+                    document.querySelectorAll('input[type="text"], textarea').forEach((element, index) => {
+                        if (data[`text_${index}`]) {
+                            element.value = data[`text_${index}`];
+                        }
+                    });
+                    document.querySelectorAll('input[type="checkbox"]').forEach((element, index) => {
+                        if (data[`check_${index}`]) {
+                            element.checked = data[`check_${index}`];
+                        }
+                    });
+                } catch (e) {
+                    console.log('無法恢復儲存的數據');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
