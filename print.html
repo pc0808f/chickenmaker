@@ -205,10 +205,11 @@
 <body>
     <div class="print-controls">
         <button class="print-btn" onclick="window.print()">🖨️ 列印學習單</button>
+        <button class="print-btn" onclick="downloadPDF()">📄 下載PDF</button>
         <button class="print-btn" onclick="fillSample()">📝 填入範例內容</button>
         <button class="print-btn" onclick="clearAll()">🗑️ 清空內容</button>
         <div class="preview-note">
-            💡 這是專為A4列印優化的版本，點擊「列印學習單」即可完美列印
+            💡 這是專為A4列印優化的版本，可以列印或下載PDF檔案
         </div>
     </div>
 
@@ -453,7 +454,111 @@
         </div>
     </div>
 
+    <!-- jsPDF 和 html2canvas 函式庫 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
     <script>
+        async function downloadPDF() {
+            const button = document.querySelector('button[onclick="downloadPDF()"]');
+            const originalText = button.innerHTML;
+            
+            try {
+                // 顯示載入狀態
+                button.innerHTML = '⏳ 產生PDF中...';
+                button.disabled = true;
+                
+                // 隱藏控制面板
+                const controls = document.querySelector('.print-controls');
+                const originalDisplay = controls.style.display;
+                controls.style.display = 'none';
+                
+                // 獲取頁面容器
+                const element = document.querySelector('.page-container');
+                
+                // 使用 html2canvas 擷取頁面
+                const canvas = await html2canvas(element, {
+                    scale: 2, // 提高解析度
+                    useCORS: true,
+                    allowTaint: true,
+                    backgroundColor: '#ffffff',
+                    width: element.scrollWidth,
+                    height: element.scrollHeight
+                });
+                
+                // 創建 PDF
+                const { jsPDF } = window.jspdf;
+                const pdf = new jsPDF({
+                    orientation: 'portrait',
+                    unit: 'mm',
+                    format: 'a4'
+                });
+                
+                // 計算尺寸以適合 A4
+                const imgWidth = 210; // A4 寬度 (mm)
+                const pageHeight = 297; // A4 高度 (mm)
+                const imgHeight = (canvas.height * imgWidth) / canvas.width;
+                
+                // 添加圖片到 PDF
+                const imgData = canvas.toDataURL('image/jpeg', 0.95);
+                
+                if (imgHeight <= pageHeight) {
+                    // 如果內容可以放在一頁內
+                    pdf.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight);
+                } else {
+                    // 如果內容超過一頁，進行分頁
+                    let position = 0;
+                    const pageCanvas = document.createElement('canvas');
+                    const pageCtx = pageCanvas.getContext('2d');
+                    
+                    pageCanvas.width = canvas.width;
+                    
+                    while (position < canvas.height) {
+                        const remainingHeight = canvas.height - position;
+                        const pageHeightPx = Math.min(remainingHeight, (pageHeight * canvas.width) / imgWidth);
+                        
+                        pageCanvas.height = pageHeightPx;
+                        pageCtx.clearRect(0, 0, pageCanvas.width, pageCanvas.height);
+                        pageCtx.drawImage(canvas, 0, position, canvas.width, pageHeightPx, 0, 0, canvas.width, pageHeightPx);
+                        
+                        const pageImgData = pageCanvas.toDataURL('image/jpeg', 0.95);
+                        const pageImgHeight = (pageHeightPx * imgWidth) / canvas.width;
+                        
+                        if (position > 0) {
+                            pdf.addPage();
+                        }
+                        
+                        pdf.addImage(pageImgData, 'JPEG', 0, 0, imgWidth, pageImgHeight);
+                        position += pageHeightPx;
+                    }
+                }
+                
+                // 生成檔案名稱
+                const studentName = document.querySelector('input[style*="width: 120px"]').value || '學習單';
+                const date = document.querySelector('input[placeholder*="2025"]').value || new Date().toLocaleDateString('zh-TW');
+                const fileName = `雞舍重建專案-${studentName}-${date}.pdf`;
+                
+                // 下載 PDF
+                pdf.save(fileName);
+                
+                // 恢復控制面板
+                controls.style.display = originalDisplay;
+                
+            } catch (error) {
+                console.error('PDF 生成錯誤:', error);
+                alert('PDF 生成失敗，請稍後再試或使用列印功能');
+                
+                // 恢復控制面板
+                const controls = document.querySelector('.print-controls');
+                controls.style.display = '';
+                
+            } finally {
+                // 恢復按鈕狀態
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }
+        }
+
         function fillSample() {
             // 填入範例內容供參考
             const textareas = document.querySelectorAll('.text-area');
