@@ -109,22 +109,26 @@
             margin: 20px 0;
         }
         .section h2 {
-            font-size: 14pt;
-            margin: 15px 0 10px 0;
+            font-size: 13pt;
+            margin: 12px 0 8px 0;
             color: #333;
             border-left: 4px solid #666;
-            padding-left: 10px;
+            padding-left: 8px;
+            word-wrap: break-word;
+            line-height: 1.2;
         }
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 10px 0;
-            font-size: 10pt;
+            margin: 8px 0;
+            font-size: 9pt;
+            table-layout: fixed;
         }
         th, td {
             border: 1px solid #333;
-            padding: 8px;
+            padding: 6px;
             vertical-align: top;
+            word-wrap: break-word;
         }
         th {
             background-color: #e0e0e0;
@@ -132,16 +136,18 @@
             text-align: center;
         }
         .question-col {
-            width: 35%;
+            width: 32%;
             font-weight: bold;
+            font-size: 8pt;
         }
         .answer-col {
-            width: 65%;
-            min-height: 40px;
+            width: 68%;
+            min-height: 35px;
         }
         .checkbox-group {
-            margin: 3px 0;
-            font-size: 9pt;
+            margin: 2px 0;
+            font-size: 7pt;
+            line-height: 1.1;
         }
         .checkbox {
             width: 12px;
@@ -496,7 +502,7 @@
                 
                 // 計算尺寸以適合 A4
                 const imgWidth = 210; // A4 寬度 (mm)
-                const pageHeight = 297; // A4 高度 (mm)
+                const pageHeight = 280; // A4 高度 (mm) - 留邊距
                 const imgHeight = (canvas.height * imgWidth) / canvas.width;
                 
                 // 添加圖片到 PDF
@@ -504,7 +510,7 @@
                 
                 if (imgHeight <= pageHeight) {
                     // 如果內容可以放在一頁內
-                    pdf.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight);
+                    pdf.addImage(imgData, 'JPEG', 5, 5, imgWidth - 10, imgHeight);
                 } else {
                     // 如果內容超過一頁，進行分頁
                     let position = 0;
@@ -528,7 +534,7 @@
                             pdf.addPage();
                         }
                         
-                        pdf.addImage(pageImgData, 'JPEG', 0, 0, imgWidth, pageImgHeight);
+                        pdf.addImage(pageImgData, 'JPEG', 5, 5, imgWidth - 10, pageImgHeight);
                         position += pageHeightPx;
                     }
                 }
