@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>雞舍重建專案：使用者需求訪談學習單 (A4列印版)</title>
+    <style>
+        /* 螢幕顯示樣式 */
+        @media screen {
+            body {
+                font-family: 'Microsoft JhengHei', Arial, sans-serif;
+                line-height: 1.4;
+                margin: 0;
+                padding: 20px;
+                background-color: #f0f0f0;
+            }
+            .page-container {
+                max-width: 21cm;
+                margin: 0 auto;
+                background: white;
+                padding: 2cm;
+                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+                border-radius: 5px;
+            }
+            .print-controls {
+                text-align: center;
+                margin-bottom: 20px;
+                padding: 15px;
+                background: #e3f2fd;
+                border-radius: 5px;
+            }
+            .print-btn {
+                background: #1976d2;
+                color: white;
+                border: none;
+                padding: 12px 24px;
+                margin: 0 10px;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 16px;
+            }
+            .print-btn:hover {
+                background: #1565c0;
+            }
+            .preview-note {
+                color: #666;
+                font-size: 14px;
+                margin-top: 10px;
+            }
+        }
+
+        /* A4列印專用樣式 */
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: 'Microsoft JhengHei', Arial, sans-serif;
+                font-size: 11pt;
+                line-height: 1.3;
+                color: #000;
+            }
+            .page-container {
+                width: 100%;
+                max-width: none;
+                margin: 0;
+                padding: 1.5cm;
+                box-shadow: none;
+                border-radius: 0;
+            }
+            .print-controls {
+                display: none;
+            }
+        }
+
+        /* 共用樣式 */
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 15px;
+        }
+        .header h1 {
+            font-size: 18pt;
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+        .info-line {
+            font-size: 12pt;
+            margin: 8px 0;
+        }
+        .info-line input {
+            border: none;
+            border-bottom: 1px solid #333;
+            padding: 2px 5px;
+            margin: 0 8px;
+            font-size: 11pt;
+            background: transparent;
+        }
+        .mission-box {
+            background: #f5f5f5;
+            border: 2px solid #666;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .section {
+            margin: 20px 0;
+        }
+        .section h2 {
+            font-size: 14pt;
+            margin: 15px 0 10px 0;
+            color: #333;
+            border-left: 4px solid #666;
+            padding-left: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            font-size: 10pt;
+        }
+        th, td {
+            border: 1px solid #333;
+            padding: 8px;
+            vertical-align: top;
+        }
+        th {
+            background-color: #e0e0e0;
+            font-weight: bold;
+            text-align: center;
+        }
+        .question-col {
+            width: 35%;
+            font-weight: bold;
+        }
+        .answer-col {
+            width: 65%;
+            min-height: 40px;
+        }
+        .checkbox-group {
+            margin: 3px 0;
+            font-size: 9pt;
+        }
+        .checkbox {
+            width: 12px;
+            height: 12px;
+            display: inline-block;
+            border: 1px solid #333;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+        .text-area {
+            width: 100%;
+            min-height: 35px;
+            border: none;
+            resize: none;
+            font-size: 10pt;
+            line-height: 1.3;
+        }
+        .drawing-box {
+            border: 2px dashed #666;
+            height: 120px;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 10pt;
+        }
+        .material-table td {
+            padding: 5px;
+            font-size: 9pt;
+        }
+        .reflection-section {
+            background: #f9f9f9;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .reflection-item {
+            margin: 10px 0;
+        }
+        .reflection-item strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .long-line {
+            border-bottom: 1px solid #333;
+            min-height: 20px;
+            margin: 5px 0;
+        }
+        .footer-note {
+            font-size: 8pt;
+            color: #666;
+            text-align: center;
+            margin-top: 20px;
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="print-controls">
+        <button class="print-btn" onclick="window.print()">🖨️ 列印學習單</button>
+        <button class="print-btn" onclick="fillSample()">📝 填入範例內容</button>
+        <button class="print-btn" onclick="clearAll()">🗑️ 清空內容</button>
+        <div class="preview-note">
+            💡 這是專為A4列印優化的版本，點擊「列印學習單」即可完美列印
+        </div>
+    </div>
+
+    <div class="page-container">
+        <div class="header">
+            <h1>🐔 雞舍重建專案：使用者需求訪談學習單</h1>
+            <div class="info-line">
+                <strong>團隊名稱：</strong>雞舍設計/監工隊　
+                <strong>調查員姓名：</strong><input type="text" style="width: 120px;">　
+                <strong>日期：</strong><input type="text" style="width: 100px;" placeholder="2025年9月1日">
+            </div>
+        </div>
+
+        <div class="mission-box">
+            🎯 <strong>我們的任務：</strong>成為雞的代言人！設計一個更安全、更舒服、更棒的家！
+        </div>
+
+        <div class="section">
+            <h2>🐔 第一部分：我們的「使用者(雞)」是誰？</h2>
+            <table>
+                <tr>
+                    <th>觀察項目</th>
+                    <th>你的發現（畫圖或文字）</th>
+                </tr>
+                <tr>
+                    <td class="question-col">
+                        <strong>牠們喜歡待在哪裡？</strong><br>
+                        <div class="checkbox-group">
+                            <span class="checkbox"></span>陰涼處　
+                            <span class="checkbox"></span>高處<br>
+                            <span class="checkbox"></span>草地　
+                            <span class="checkbox"></span>其他：_______
+                        </div>
+                    </td>
+                    <td class="answer-col">
+                        <textarea class="text-area"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="question-col">
+                        <strong>牠們會做什麼事？</strong><br>
+                        <div class="checkbox-group">
+                            <span class="checkbox"></span>散步　
+                            <span class="checkbox"></span>吃東西<br>
+                            <span class="checkbox"></span>抓癢　
+                            <span class="checkbox"></span>休息<br>
+                            <span class="checkbox"></span>其他：_______
+                        </div>
+                    </td>
+                    <td class="answer-col">
+                        <textarea class="text-area"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="question-col">
+                        <strong>身高、體長多少？</strong><br>
+                        <small>（用手或尺比比看）</small>
+                    </td>
+                    <td class="answer-col">
+                        <textarea class="text-area"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="question-col">
+                        <strong>吃飯/喝水的樣子？</strong><br>
+                        <div class="checkbox-group">
+                            <span class="checkbox"></span>會搶食　
+                            <span class="checkbox"></span>不搶<br>
+                            <span class="checkbox"></span>頭伸很低
+                        </div>
+                    </td>
+                    <td class="answer-col">
+                        <textarea class="text-area"></textarea>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>🔍 第二部分：舊雞舍為什麼會壞掉？</h2>
+            <table>
+                <tr>
+                    <th>觀察項目</th>
+                    <th>你的發現（畫圖或文字）</th>
+                </tr>
+                <tr>
+                    <td class="question-col">
+                        <strong>哪裡壞得最嚴重？</strong><br>
+                        <div class="checkbox-group">
+                            <span class="checkbox"></span>屋頂　
+                            <span class="checkbox"></span>牆壁<br>
+                            <span class="checkbox"></span>柱子　
+                            <span class="checkbox"></span>其他：_____
+                        </div>
+                    </td>
+                    <td class="answer-col">
+                        <textarea class="text-area"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="question-col">
+                        <strong>為什麼會壞？</strong><br>
+                        <div class="checkbox-group">
+                            <span class="checkbox"></span>被風吹　
+                            <span class="checkbox"></span>被雨淋<br>
+                            <span class="checkbox"></span>木頭太細　
+                            <span class="checkbox"></span>其他：_____
+                        </div>
+                    </td>
+                    <td class="answer-col">
+                        <textarea class="text-area"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="question-col">
+                        <strong>有什麼不好用？</strong><br>
+                        <div class="checkbox-group">
+                            <span class="checkbox"></span>很難撿蛋<br>
+                            <span class="checkbox"></span>很難清理<br>
+                            <span class="checkbox"></span>其他：_______
+                        </div>
+                    </td>
+                    <td class="answer-col">
+                        <textarea class="text-area"></textarea>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>💡 第三部分：新雞舍的超級點子！</h2>
+            <table>
+                <tr>
+                    <th>設計項目</th>
+                    <th>我們的「雞」妙點子</th>
+                </tr>
+                <tr>
+                    <td class="question-col"><strong>門的位置和大小</strong></td>
+                    <td class="answer-col"><textarea class="text-area"></textarea></td>
+                </tr>
+                <tr>
+                    <td class="question-col"><strong>吃喝區設計</strong></td>
+                    <td class="answer-col"><textarea class="text-area"></textarea></td>
+                </tr>
+                <tr>
+                    <td class="question-col"><strong>棲木位置和高度</strong></td>
+                    <td class="answer-col"><textarea class="text-area"></textarea></td>
+                </tr>
+                <tr>
+                    <td class="question-col"><strong>下蛋區特色</strong><br><small>（要暗一點、舒服一點嗎？）</small></td>
+                    <td class="answer-col"><textarea class="text-area"></textarea></td>
+                </tr>
+                <tr>
+                    <td class="question-col"><strong>超酷功能</strong><br><small>（自動滑蛋道？其他創意？）</small></td>
+                    <td class="answer-col"><textarea class="text-area"></textarea></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>🎨 第四部分：設計草圖</h2>
+            <div class="drawing-box">
+                📝 請在這裡畫出你的新雞舍設計
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📋 第五部分：材料清單</h2>
+            <table class="material-table">
+                <tr>
+                    <th>材料</th>
+                    <th>數量</th>
+                    <th>來源</th>
+                    <th>備註</th>
+                </tr>
+                <tr>
+                    <td>木板</td>
+                    <td>______片</td>
+                    <td><span class="checkbox"></span>舊雞舍　<span class="checkbox"></span>新買</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>釘子</td>
+                    <td>______支</td>
+                    <td><span class="checkbox"></span>舊雞舍　<span class="checkbox"></span>新買</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>屋頂材料</td>
+                    <td>______</td>
+                    <td><span class="checkbox"></span>舊雞舍　<span class="checkbox"></span>新買</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>__________</td>
+                    <td>______</td>
+                    <td><span class="checkbox"></span>舊雞舍　<span class="checkbox"></span>新買</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>__________</td>
+                    <td>______</td>
+                    <td><span class="checkbox"></span>舊雞舍　<span class="checkbox"></span>新買</td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <div class="reflection-section">
+                <h2>🤔 第六部分：團隊反思</h2>
+                
+                <div class="reflection-item">
+                    <strong>1. 關於雞的習性，我發現：</strong>
+                    <div class="long-line"></div>
+                    <div class="long-line"></div>
+                </div>
+                
+                <div class="reflection-item">
+                    <strong>2. 關於建築設計，我學到：</strong>
+                    <div class="long-line"></div>
+                    <div class="long-line"></div>
+                </div>
+                
+                <div class="reflection-item">
+                    <strong>3. 關於團隊合作，我覺得：</strong>
+                    <div class="long-line"></div>
+                    <div class="long-line"></div>
+                </div>
+                
+                <div class="reflection-item">
+                    <strong>給建築隊的建議：</strong>
+                    <div class="long-line"></div>
+                    <div class="long-line"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-note">
+            <strong>📌 給老師的提示：</strong>建議2人一組完成 • 鼓勵圖文並用 • 重要學習歷程記錄 • 可用於成果發表<br>
+            雞本創客教學專案 © 2025
+        </div>
+    </div>
+
+    <script>
+        function fillSample() {
+            // 填入範例內容供參考
+            const textareas = document.querySelectorAll('.text-area');
+            const sampleAnswers = [
+                '雞喜歡待在樹蔭下，也喜歡在草地上找蟲子吃',
+                '牠們會散步、吃東西、互相理毛，有時會追逐遊戲',
+                '大概30公分高，身長約40公分',
+                '吃東西時會搶食，喝水時頭要伸得很低',
+                '屋頂有很多破洞，木板也腐爛了',
+                '因為颱風吹壞了，加上木頭太舊容易腐爛',
+                '門太小，人要彎腰才能進去清理',
+                '門要開大一點，大概60公分寬',
+                '食物和水要分開放，避免被弄髒',
+                '棲木要裝在離地50公分的地方',
+                '下蛋區要暗一點，可以用布遮起來',
+                '可以做斜坡讓雞蛋自己滾出來！'
+            ];
+            
+            textareas.forEach((textarea, index) => {
+                if (index < sampleAnswers.length) {
+                    textarea.value = sampleAnswers[index];
+                }
+            });
+            
+            // 填入基本資訊
+            document.querySelector('input[style*="width: 120px"]').value = '小雞設計師';
+            document.querySelector('input[placeholder="2025年9月1日"]').value = '2025年9月1日';
+            
+            alert('已填入範例內容，您可以參考或修改！');
+        }
+
+        function clearAll() {
+            if (confirm('確定要清空所有內容嗎？')) {
+                document.querySelectorAll('input[type="text"], textarea').forEach(element => {
+                    element.value = '';
+                });
+                alert('所有內容已清空！');
+            }
+        }
+
+        // 自動調整textarea高度
+        document.querySelectorAll('.text-area').forEach(textarea => {
+            textarea.addEventListener('input', function() {
+                this.style.height = 'auto';
+                this.style.height = Math.max(this.scrollHeight, 35) + 'px';
+            });
+        });
+    </script>
+</body>
+</html>
